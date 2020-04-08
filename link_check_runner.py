@@ -9,7 +9,7 @@ from const import URL_TEST, URL_PROD_TOKYOKANAGAWA, URL_PROD_NAGANO, URL_PROD_KA
 def main():
     for url in [URL_TEST, URL_PROD_TOKYOKANAGAWA, URL_PROD_NAGANO, URL_PROD_KANSAI]:
         try:
-            now, file_path, type_str = run_link_check(url)
+            now, file_path, type_str, nrow = run_link_check(url)
         except:
             print("Link Check Failed!")
         else:

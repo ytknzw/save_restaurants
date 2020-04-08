@@ -67,11 +67,12 @@ def run_link_check(url):
 
     error_df.reset_index(drop=True, inplace=True)
     # error_df
+    nrow = len(error_df)
 
     error_df.to_excel(file_path)
-    print("Exported!")
+    print(f"{nrow} row(s) exported!")
 
-    return now, file_path, type_str
+    return now, file_path, type_str, nrow
 
 
 def _fetch_website(url):
