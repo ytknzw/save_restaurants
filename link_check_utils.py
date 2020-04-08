@@ -4,17 +4,15 @@ import re
 import pandas as pd
 from datetime import datetime
 
-from const import URL_PROD, URL_TEST
+from const import URL_TEST
 
 
 def run_link_check(url):
     now = datetime.now().strftime("%Y%m%d_%H%M")
-    if url == URL_PROD:
-        type_str = "prod_page"
-    elif url == URL_TEST:
+    if url == URL_TEST:
         type_str = "test_page"
     else:
-        raise Exception
+        type_str = f"prod_{re.search('/[^/]+/$', url)[0].replace('/', '')}"
 
     file_path = f"link_error_{type_str}_{now}.xlsx"
     print(url)
@@ -73,7 +71,7 @@ def run_link_check(url):
     error_df.to_excel(file_path)
     print("Exported!")
 
-    return now, file_path
+    return now, file_path, type_str
 
 
 def _fetch_website(url):
